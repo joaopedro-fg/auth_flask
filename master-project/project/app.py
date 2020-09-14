@@ -1,14 +1,14 @@
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template, request, Flask
 from . import db
 from flask_login import login_required, current_user
 
-main = Blueprint('main', __name__)
-
-@main.route('/')
+app = Flask(__name__)
+@app.route('/')
 def index():
+    app.config['SHARED'].record_click()
     return render_template('index.html')
     
-@main.route('/profile', methods=['POST', 'GET'])
+@app.route('/profile', methods=['POST', 'GET'])
 @login_required
 def profile():
     if request.method == 'POST':

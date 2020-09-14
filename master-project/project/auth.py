@@ -44,9 +44,9 @@ def login_post():
         flash('Por favor, cheque suas credenciais e tente novamente.')
         return redirect(url_for('auth.login'))
     login_user(user, remember=remember)
-    return redirect(url_for('main.profile'))
+    return redirect(url_for('app.profile'))
 @auth.route('/logout')
 @login_required
 def logout():
     logout_user()
-    return redirect(url_for('main.index'))
+    return redirect(url_for('app.index'))
